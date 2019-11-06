@@ -1,0 +1,31 @@
+/* COLORS ---*/
+$color-text: #444 !default;
+$color-gray: #777 !default;
+$color-gray-lightest: #FAFAFA !default;
+$color-primary: #46c7fc !default;
+$color-like: #e53935 !default;
+
+/* FONTS ---*/
+$font-size: 16px !default;
+$font-family: 'Roboto', Arial, sans-serif !default;
+$font-thin: 100 !default;
+$font-light: 300 !default;
+$font-regular: 400 !default;
+$font-bold: 700 !default;
+$font-black: 900 !default;
+
+/* LAYOUT ---*/
+$header-height: 4rem !default;
+$header-shadow: 0 0 6px rgba(0, 0, 0, .3) !default;
+$header-font-size: 2rem !default;
+$header-font-weight: $font-bold !default;
+$header-index: 5 !default;
+
+/* HEADINGS */
+$heading-2-font-size: 3em;
+$heading-2-font-size-sm: 2em;
+$heading-2-font-weight: $font-thin;
+
+/* BREAKPOINTS ---*/
+$bp-sm: 480px  !default;
+$bp-md: 769px !default;
