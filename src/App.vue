@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/vote">Vote</router-link> |
+      <router-link to="/">Fight Chat</router-link>
+      <router-link to="/allCats">Tous les chats</router-link>
     </div>
     <div class="container">
         <router-view/>
@@ -26,6 +26,8 @@
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  margin:0 10px;
+  text-decoration: none;
 }
 
 #nav a.router-link-exact-active {

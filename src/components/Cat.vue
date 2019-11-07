@@ -1,5 +1,5 @@
 <template>
-  <div class="cat">
+  <div class="cat" >
     <h2 class="cat__name">{{title}}</h2>
     <div class="cat__wrapLike">
       <div class="cat__heart"></div>
@@ -21,7 +21,8 @@
       like: {
         type:Number
       }
-    },
+    }
+    
   }
 </script>
 

@@ -12,6 +12,8 @@ const options = {
 export default {
     getCats() {
         return  axios(options);
-
+    },
+    getTwoCats(items) {
+        return items[Math.floor(Math.random()*items.length)];
     }
 }

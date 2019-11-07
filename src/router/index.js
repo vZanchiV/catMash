@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import AllCats from '../views/AllCats.vue'
 import Home from '../views/Home.vue'
-import Vote from '../views/Vote.vue'
 
 Vue.use(VueRouter)
 
@@ -12,9 +12,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/vote',
-    name: 'vote',
-    component: Vote
+    path: '/allCats',
+    name: 'allCats',
+    component: AllCats
   }
 ]
 
