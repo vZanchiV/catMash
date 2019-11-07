@@ -13,7 +13,19 @@ export default {
     getCats() {
         return  axios(options);
     },
-    getTwoCats(items) {
+    getOneCats(items) {
         return items[Math.floor(Math.random()*items.length)];
+    },
+    sortCats(items) {
+       function compare( a, b ) {
+            if ( a.like < b.like){
+                return 1;
+            }   
+            if ( a.like > b.like ){
+                return -1;
+            }
+            return 0;
+      }
+      return items.sort(compare)
     }
 }

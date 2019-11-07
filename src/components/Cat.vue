@@ -1,11 +1,14 @@
 <template>
-  <div class="cat" >
-    <h2 class="cat__name">{{title}}</h2>
-    <div class="cat__wrapLike">
-      <div class="cat__heart"></div>
-      <div class="cat__like" >{{like}}</div>
-    </div>   
-    <img class="cat__image" :src="urlImage" :alt="title">
+  <div class="Cat">
+    <div class="Cat__wrapper">
+      <h2 class="Cat__name">{{title}}</h2>
+      <div class="Cat__wrapLike">
+        <div class="Cat__heart"></div>
+        <div class="Cat__like" >{{like}}</div>
+      </div>
+    </div>
+       
+    <img class="Cat__image" :src="urlImage" :alt="title">
   </div>
 </template>
 
@@ -28,17 +31,20 @@
 
 <style lang="scss" >
 @import "../assets/scss/_variables.scss";
-.cat {
+.Cat {
   position:relative;
+  margin-bottom:30px;
   &__image {
     max-width:100%;
   }
   &__wrapLike {
-    position:absolute;
-    right:0;
-    top:20px;
     display: flex;
     
+  }
+  &__name {
+    margin: 0 5px 20px 0;
+    font-size: 32px;
+    color:$color-text;
   }
   &__heart {
     position:relative;
@@ -73,11 +79,24 @@
     
   }
   &__like {
-      color:$color-text;
-      font-size:12px;
-      font-weight:bold;
-      margin-left:5px;
+    color:$color-text;
+    font-size:12px;
+    font-weight:bold;
+    margin-left:5px;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: $bp-sm)  {
+        
+  .Cat {
+    &__image {
+      max-height:200px;
     }
+  }
 }
 
 </style>

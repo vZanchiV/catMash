@@ -20,7 +20,9 @@ import Cat from '../components/Cat'
            Cat,
       },
       created () {
+        if(this.cats.lenght < 1) {
           this.getCats();
+        }
       },
       methods: {
         ...mapActions([

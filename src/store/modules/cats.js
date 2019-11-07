@@ -20,21 +20,22 @@ const mutations = {
     },
     GET_FOR_VOTE:(state, payload)=>{
         state.catForVote = payload
+    },
+    UPDATE_CATS:(state, payload)=> {
+        state.cats = payload
     }
 };
 
 const actions = {
     getCats({commit}) {
         catService.getCats().then( res => { 
-            const allCats = res.data.images;
+            let allCats = res.data.images;
             const twoCats = [];
-            
             // add node like for each cat
             allCats.forEach(item => {
                 item['like'] = 0;
             });
-            twoCats.push(catService.getTwoCats(allCats),catService.getTwoCats(allCats));
-            /* eslint-disable no-console */
+            twoCats.push(catService.getOneCats(allCats),catService.getOneCats(allCats));
             commit('GET_CATS',allCats);
             commit('GET_FOR_VOTE',twoCats)
         
@@ -46,6 +47,17 @@ const actions = {
             }
             commit('GET_CATS_ERROR', error)
         });         
+    },
+    getTwoCats({commit}) {
+        const twoCats = [];
+        twoCats.push(catService.getOneCats(state.cats),catService.getOneCats(state.cats));
+        commit('GET_FOR_VOTE',twoCats)
+    },
+    updateCat({commit},cat) {
+       let objIndex = state.cats.findIndex((obj => obj.id == cat.id));
+       state.cats[objIndex].like++
+       state.cats = catService.sortCats(state.cats);
+       commit('UPDATE_CATS',state.cats)
     }
 
 }

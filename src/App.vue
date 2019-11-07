@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Fight Chat</router-link>
-      <router-link to="/allCats">Tous les chats</router-link>
+      <router-link to="/">Cat Mash</router-link>
+      <router-link to="/allCats">Classement</router-link>
     </div>
     <div class="container">
         <router-view/>
@@ -10,7 +10,19 @@
   </div>
 </template>
 
-<style>
+<style lang="scss" >
+@import "./assets/scss/_variables.scss";
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -21,6 +33,7 @@
 
 #nav {
   padding: 30px;
+  background:$color-gray-lightest;
 }
 
 #nav a {
@@ -35,6 +48,6 @@
 }
 
 .container {
-  padding:10px 30px;
+  
 }
 </style>
