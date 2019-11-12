@@ -3,6 +3,7 @@ module.exports = {
   "env": {
     "development": {
       "plugins": ["transform-class-properties"]
-    }
-  }
+    },
+  },
+  
 }

@@ -50,7 +50,7 @@ import Cat from '../components/Cat'
       padding:0;
     }
     &__item {
-    
+      width:100%;
     }
   }
 

@@ -69,7 +69,7 @@ import Cat from '../components/Cat'
                 this.show = false;
                 this.isdisabled = false;
             }
-        },
+        }
       
     }
 </script>
@@ -83,7 +83,8 @@ import Cat from '../components/Cat'
             padding:0;
             margin:0;
             display: flex;
-            flex-direction: row;
+          
+            flex-direction: column;
             justify-content: center;
         }
         &__item {
@@ -118,6 +119,9 @@ import Cat from '../components/Cat'
 
     @media screen and (min-width: $bp-sm)  {
         .CatVote {
+            &__wrap {
+                flex-direction: row;
+            }
             &__item {
             width:calc(50% - 10px);
             

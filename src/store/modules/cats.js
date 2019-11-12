@@ -11,14 +11,14 @@ const getters = {
 };
 
 
-const mutations = {
+ export const mutations = {
     GET_CATS:(state, payload) => {
         state.cats = payload
     },
     GET_CATS_ERROR:(state, error) => {
         state.errors = [error, ...state.errors];
     },
-    GET_FOR_VOTE:(state, payload)=>{
+    GET_TWO_CATS:(state, payload)=>{
         state.catForVote = payload
     },
     UPDATE_CATS:(state, payload)=> {
@@ -37,7 +37,7 @@ const actions = {
             });
             twoCats.push(catService.getOneCats(allCats),catService.getOneCats(allCats));
             commit('GET_CATS',allCats);
-            commit('GET_FOR_VOTE',twoCats)
+            commit('GET_TWO_CATS',twoCats)
         
         })
         .catch(err =>{
@@ -51,7 +51,7 @@ const actions = {
     getTwoCats({commit}) {
         const twoCats = [];
         twoCats.push(catService.getOneCats(state.cats),catService.getOneCats(state.cats));
-        commit('GET_FOR_VOTE',twoCats)
+        commit('GET_TWO_CATS',twoCats)
     },
     updateCat({commit},cat) {
        let objIndex = state.cats.findIndex((obj => obj.id == cat.id));
