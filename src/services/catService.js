@@ -16,6 +16,11 @@ export default {
     getOneCats(items) {
         return items[Math.floor(Math.random()*items.length)];
     },
+    removeOneCatFromAllCats(items,item) {     
+        return items.filter(function( obj ) {
+            return  obj.id !== item.id;
+      });
+    },
     sortCats(items) {
        function compare( a, b ) {
             if ( a.like < b.like){

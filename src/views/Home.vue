@@ -14,7 +14,7 @@
                 v-for="(cat,index) in twoCats"  
                 :key="index"  
                 class="CatVote__item">
-                    <Cat  
+                    <Cat  v-if="cat"
                     :key="index"
                     :title='cat.id' 
                     :like='cat.like'
@@ -62,14 +62,14 @@ import Cat from '../components/Cat'
                 this.updateCat(cat);
                 this.nameCate = cat.id
                 this.show = true;
-                setTimeout( () => this.afterVote(),2000);
+                setTimeout( () => this.afterVote(),100);
             },
             afterVote() {
                 this.getTwoCats();
                 this.show = false;
                 this.isdisabled = false;
             }
-        }
+        },
       
     }
 </script>

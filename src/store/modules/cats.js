@@ -31,11 +31,13 @@ const actions = {
         catService.getCats().then( res => { 
             let allCats = res.data.images;
             const twoCats = [];
+            const CatOne = catService.getOneCats(allCats);
             // add node like for each cat
             allCats.forEach(item => {
                 item['like'] = 0;
             });
-            twoCats.push(catService.getOneCats(allCats),catService.getOneCats(allCats));
+            let CatTwo = catService.getOneCats(catService.removeOneCatFromAllCats(allCats,CatOne));    
+            twoCats.push(CatOne,CatTwo);
             commit('GET_CATS',allCats);
             commit('GET_TWO_CATS',twoCats)
         
@@ -50,7 +52,9 @@ const actions = {
     },
     getTwoCats({commit}) {
         const twoCats = [];
-        twoCats.push(catService.getOneCats(state.cats),catService.getOneCats(state.cats));
+        let CatOne = catService.getOneCats(state.cats);
+        let CatTwo = catService.getOneCats(catService.removeOneCatFromAllCats(state.cats,CatOne))          
+        twoCats.push(CatOne,CatTwo);
         commit('GET_TWO_CATS',twoCats)
     },
     updateCat({commit},cat) {
