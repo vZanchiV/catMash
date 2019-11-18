@@ -20,18 +20,19 @@ import Cat from '../components/Cat'
            Cat,
       },
       created () {
-        if(this.cats.lenght < 1) {
-          this.getCats();
-        }
+          that.getCats();
       },
       methods: {
         ...mapActions([
-          'getCats'
+          'getCats',
+          'sortCats'
         ]),
       },
       computed: {
         ...mapGetters  ({
-             cats: 'catsList',
+             cats: 'catsSorted',
+             cats:'catsList'
+
         })
       } 
     }

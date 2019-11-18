@@ -1,13 +1,16 @@
 import catService from '../../services/catService';
+import * as firebase from 'firebase'
 
 const state = {
     cats: [],
-    catForVote: []
+    catForVote: [],
+    catsSorted:[]
 };
 
 const getters = {
     catsList : state => state.cats,
     twoCats : state => state.catForVote,
+    catsSorted : state => state.catsSorted
 };
 
 
@@ -15,40 +18,26 @@ const getters = {
     GET_CATS:(state, payload) => {
         state.cats = payload
     },
-    GET_CATS_ERROR:(state, error) => {
-        state.errors = [error, ...state.errors];
-    },
     GET_TWO_CATS:(state, payload)=>{
         state.catForVote = payload
     },
     UPDATE_CATS:(state, payload)=> {
+        state.cats = payload
+    },
+    SORT_CATS:(state, payload)=> {
         state.cats = payload
     }
 };
 
 const actions = {
     getCats({commit}) {
-        catService.getCats().then( res => { 
-            let allCats = res.data.images;
-            const twoCats = [];
-            const CatOne = catService.getOneCats(allCats);
-            // add node like for each cat
-            allCats.forEach(item => {
-                item['like'] = 0;
-            });
-            let CatTwo = catService.getOneCats(catService.removeOneCatFromAllCats(allCats,CatOne));    
-            twoCats.push(CatOne,CatTwo);
+        const refCats = firebase.database().ref('cats');
+        refCats.on('value', snapshot => {
+            let allCats = snapshot.val();
             commit('GET_CATS',allCats);
-            commit('GET_TWO_CATS',twoCats)
-        
-        })
-        .catch(err =>{
-            const error = {
-                date :new Date(),
-                message:`failled to retrieve products:${err.message}`
-            }
-            commit('GET_CATS_ERROR', error)
-        });         
+            this.dispatch('getTwoCats');
+            this.dispatch('sortCats');
+        })        
     },
     getTwoCats({commit}) {
         const twoCats = [];
@@ -58,10 +47,18 @@ const actions = {
         commit('GET_TWO_CATS',twoCats)
     },
     updateCat({commit},cat) {
-       let objIndex = state.cats.findIndex((obj => obj.id == cat.id));
-       state.cats[objIndex].like++
-       state.cats = catService.sortCats(state.cats);
+       
+       const {index} = cat;
+       console.log(index,state.cats[index])
+       const db = firebase.database()
+       db.ref(`cats/${index}`).update({ like: cat.item.like +1 });
+       console.log(state.cats[index])
        commit('UPDATE_CATS',state.cats)
+    },
+    sortCats({commit}){
+        console.log('sortale',state.catss)
+        const  catsSort = catService.sortCats(state.cats);
+        commit('SORT_CATS',catsSort)
     }
 
 }

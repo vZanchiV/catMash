@@ -16,9 +16,9 @@
                 class="CatVote__item">
                     <Cat  v-if="cat"
                     :key="index"
-                    :title='cat.id' 
-                    :like='cat.like'
-                    :urlImage='cat.url' />  
+                    :title='cat.item.id' 
+                    :like='cat.item.like'
+                    :urlImage='cat.item.url' />  
             </li>
         </ul>
        
@@ -29,6 +29,9 @@
 import { mapGetters } from 'vuex';
 import { mapActions } from 'vuex';
 import Cat from '../components/Cat'
+import * as firebase from 'firebase'
+import config from '../../firebaseConfig';
+
     export default {
         components: {
             Cat,
@@ -37,13 +40,12 @@ import Cat from '../components/Cat'
             return {
                 nameCate: '',
                 show:false,
-                isdisabled:false
+                isdisabled:false,
+                refCat:[]
             }
         },
         created () {
-            if(this.cats.length < 1) {
-                this.getCats();
-            }
+            this.getCats()
         },
         computed: {
             ...mapGetters  ({
@@ -58,9 +60,9 @@ import Cat from '../components/Cat'
                 'updateCat'
             ]),
             vote(cat) {
-                this.isdisabled = true; // can't vote
+                this.isdisabled = true; 
                 this.updateCat(cat);
-                this.nameCate = cat.id
+                this.nameCate = cat.item.id
                 this.show = true;
                 setTimeout( () => this.afterVote(),100);
             },
